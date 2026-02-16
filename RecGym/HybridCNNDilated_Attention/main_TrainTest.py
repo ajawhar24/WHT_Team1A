@@ -127,11 +127,13 @@ def train(dataset_conf, train_conf, results_path):
     # Create a .npz file (zipped archive) to store the accuracy and kappa metrics 
     # for all runs (to calculate average accuracy/kappa over all runs)
     perf_allRuns = open(results_path + "/perf_allRuns.npz", 'wb')
-    
+    #print(dataset_conf)
     # Get dataset paramters
     dataset = dataset_conf.get('name')
+    
     n_sub = dataset_conf.get('n_sub')
-    data_path = dataset_conf.get('data_path')
+    data_path = 'data/RecGym.csv'
+  
     # Get training hyperparamters
     batch_size = train_conf.get('batch_size')
     epochs = train_conf.get('epochs')
@@ -153,6 +155,7 @@ def train(dataset_conf, train_conf, results_path):
         BestSubjAcc = 0 
         bestTrainingHistory = [] 
         # Get training and test data
+       # print(dataset)
         X_train, _, y_train_onehot, X_test, _, y_test_onehot = get_data(data_path, sub+1, dataset)
         
         # Iteration over multiple runs 
@@ -166,11 +169,11 @@ def train(dataset_conf, train_conf, results_path):
             filepath = results_path + '/saved models/run-{}'.format(train+1)
             if not os.path.exists(filepath):
                 os.makedirs(filepath)        
-            filepath = filepath + '/subject-{}.h5'.format(sub+1)
-            
+            filepath = filepath + '/subject-{}.weights.h5'.format(sub+1)
+     
             # Create the model
             model = getModel(dataset_conf)
-
+           
             # Compile and train the model
             model.compile(loss=categorical_crossentropy, optimizer=Adam(learning_rate=lr), metrics=['accuracy'])          
             model.summary()
@@ -180,6 +183,7 @@ def train(dataset_conf, train_conf, results_path):
                 LearningRateScheduler(scheduler)
             ]
             class_weight_dictionary = {0: 17.34, 1: 16.14, 2: 18.45, 3:18.89, 4: 15.50, 5: 1.0, 6: 9.79, 7: 46.91, 8: 12.4, 9: 10.2, 10: 9.14, 11: 9.1}
+            
             history = model.fit(X_train, y_train_onehot, validation_data=(X_test, y_test_onehot), epochs=epochs, batch_size=batch_size, sample_weight=generate_sample_weights(y_train_onehot, class_weight_dictionary), callbacks=callbacks, verbose=1)
 
             # Evaluate the performance of the trained model. 
@@ -205,7 +209,7 @@ def train(dataset_conf, train_conf, results_path):
         
         # Store the path of the best model among several runs
         best_run = np.argmax(acc[sub,:])
-        filepath = '/saved models/run-{}/subject-{}.h5'.format(best_run+1, sub+1)+'\n'
+        filepath = '/saved models/run-{}/subject-{}.weights.h5'.format(best_run+1, sub+1)+'\n'
         best_models.write(filepath)
         # Get the current 'OUT' time to calculate the subject training time
         out_sub = time.time()
@@ -240,7 +244,13 @@ def train(dataset_conf, train_conf, results_path):
 
 
 #%% Evaluation 
-def test(model, dataset_conf, results_path, allRuns = True):
+def test(model, dataset_conf, results_path, allRuns = False):
+    test_dir_sub = results_path + "/test/Y_truth_Sub_"
+    test_dir_pred = results_path + "/test/Y_pred_Sub_"
+    if not os.path.exists(test_dir_sub):
+        os.makedirs(test_dir_sub)
+    if not os.path.exists(test_dir_pred):
+        os.makedirs(test_dir_pred)
     # Open the  "Log" file to write the evaluation results 
     log_write = open(results_path + "/log.txt", "a")
     # Open the file that stores the path of the best models among several random runs.
@@ -281,8 +291,9 @@ def test(model, dataset_conf, results_path, allRuns = True):
         _, _, _, X_test, _, y_test_onehot = get_data(data_path, sub+1, dataset)
         
         # Load the best model out of multiple random runs (experiments).
-        filepath = best_models.readline()
-        model.load_weights(results_path + filepath[:-1])
+        filepath = '/saved models/run-1/subject-1.weights.h5'
+        #print(filepath)
+        model.load_weights(results_path + filepath)
         # Predict MI task
         y_pred = model.predict(X_test).argmax(axis=-1)
         # Calculate accuracy and K-score
@@ -353,6 +364,7 @@ def getModel(dataset_conf):
         di_dropout=0.1,
         di_activation='elu'
     )
+    print("")
     return model
     
     
@@ -362,16 +374,17 @@ def run():
     dataset = "Gym_Cap"
 
     in_samples = 80
-    n_channels = 1
-    n_sub = 2
+    n_channels = 6
+    n_sub = 10
     n_classes = 12
     classes_labels = ["Adductor", "ArmCurl", "BenchPress", "LegCurl", "LegPress", "Null", "Riding", "RopeSkipping", "Running", "Squat", "StairClimber", "Walking"]
-    data_path = "/datasets/sibian/cap/Deep_wrist_All.csv"
+    data_path = "data/RecGym.csv"
     #data_path = "/datasets/sibian/cap/Deep_leg_All.csv"
     #data_path = "/datasets/sibian/cap/Deep_pocket_All.csv"
 
     # Create a folder to store the results of the experiment
     results_path = os.getcwd() + "/results"
+    print(results_path)
     #results_path = os.getcwd() + "/results_imu"
     #results_path = os.getcwd() + "/results_cap"
     #results_path = os.getcwd() + "/results_leg"
@@ -390,7 +403,7 @@ def run():
     train_conf = { 'batch_size': 256, 'epochs': 1000, 'lr': 0.0001, 'LearnCurves': True, 'n_train': 3}
            
     # Train the model
-    train(dataset_conf, train_conf, results_path)
+    #train(dataset_conf, train_conf, results_path)
 
     # Evaluate the model based on the weights saved in the '/results' folder
     model = getModel(dataset_conf)

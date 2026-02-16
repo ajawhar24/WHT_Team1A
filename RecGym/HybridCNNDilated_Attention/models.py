@@ -15,19 +15,20 @@ from attention_models import attention_block
 
 
 def Post_Fusion(n_classes, in_chans=7, in_samples=80, n_windows=4, F1=16, D=2, kernelSize=64, dropout=0.1, di_kernelSize=4, di_filters=32, di_dropout=0.3, di_activation='elu'):
-
+    
     input_1= Input(shape=(1, in_samples, in_chans))
-    print("input_1: ", K.shape(input_1))
-
-    input_1_cap_slicing_layer = tf.expand_dims(Lambda(lambda x: x[:, :, :, -1], name='slice_cap')(input_1), axis=-1)
+   
+    #print("input_1: ", K.shape(input_1))
+    
+    input_1_cap_slicing_layer = Lambda(lambda x: tf.expand_dims(x[:, :, :, -1], axis=-1), name='slice_cap')(input_1)
     input_1_imu_slicing_layer = Lambda(lambda x: x[:, :, :, 0:6], name='slice_imu')(input_1)
 
-    print("input_1_cap_slicing_layer: ", K.shape(input_1_cap_slicing_layer))
-    print("input_1_imu_slicing_layer: ", K.shape(input_1_imu_slicing_layer))
+    # print("input_1_cap_slicing_layer: ", K.shape(input_1_cap_slicing_layer))
+    # print("input_1_imu_slicing_layer: ", K.shape(input_1_imu_slicing_layer))
 
     input_2_cap = Permute((2, 3, 1))(input_1_cap_slicing_layer)
     input_2_imu = Permute((2, 3, 1))(input_1_imu_slicing_layer)
-
+    
     #input_2 = Permute((2, 3, 1))(input_1)
 
     dense_weightDecay = 0.5
@@ -36,15 +37,15 @@ def Post_Fusion(n_classes, in_chans=7, in_samples=80, n_windows=4, F1=16, D=2, k
 
     numFilters = F1
     F2 = numFilters * D
-
+    
     block1_cap = Conv_block_(input_layer=input_2_cap, F1=F1, D=D, kernLength=kernelSize,
                          weightDecay=conv_weightDecay, maxNorm=conv_maxNorm, in_chans=1, dropout=dropout)
     block1_imu = Conv_block_(input_layer=input_2_imu, F1=F1, D=D, kernLength=kernelSize,
                          weightDecay=conv_weightDecay, maxNorm=conv_maxNorm, in_chans=6, dropout=dropout)
-
+    print("Yippee")
     block1 = Concatenate(axis=-1)([block1_imu, block1_cap])
     block1 = Lambda(lambda x: x[:, :, -1, :])(block1)
-
+    
     # Sliding window
     sw_concat = []  # to store concatenated or averaged sliding window outputs
     for i in range(n_windows):
@@ -53,13 +54,13 @@ def Post_Fusion(n_classes, in_chans=7, in_samples=80, n_windows=4, F1=16, D=2, k
         block2 = block1[:, st:end, :]
 
         # Attention_model
-        block2 = attention_block(block2, attention)
-
+        block2 = attention_block(block2)
+        
         # Temporal convolutional network (TCN)
         block3 = DI_block_(input_layer=block2, input_dimension=F2,
                             kernel_size=di_kernelSize, filters=di_filters,
                             weightDecay=conv_weightDecay, maxNorm=conv_maxNorm,
-                            dropout=di_dropout, activation=di_activation)
+                            dropout=di_dropout, activation=di_activation, i=0)
         # Get feature maps of the last sequence
         block3 = Lambda(lambda x: x[:, -1, :])(block3)
 
@@ -104,7 +105,7 @@ def Conv_block_(input_layer, F1=4, kernLength=64, D=2, in_chans=22, weightDecay 
     block3 = Dropout(dropout)(block3)
     return block3
 
-def DI_block_(input_layer,input_dimension,kernel_size,filters, dropout, weightDecay = 0.009, maxNorm = 0.6, activation='relu'):
+def DI_block_(input_layer,input_dimension,kernel_size,filters, dropout, weightDecay = 0.009, maxNorm = 0.6, activation='relu', i=0):
     
     block = Conv1D(filters, kernel_size=kernel_size, dilation_rate=1, activation='linear',
                     kernel_regularizer=L2(weightDecay),

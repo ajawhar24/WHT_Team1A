@@ -77,7 +77,7 @@ def load_data(root_path, batch_size, window_size, overlap_size):
 
 
 if __name__ == '__main__':
-    root_path = "datasets"
+    root_path = "data"
     batch_size = 64
     window_size = 4  # Window size in seconds
     overlap_size = 2  # Overlap size in seconds

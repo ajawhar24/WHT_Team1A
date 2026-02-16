@@ -9,7 +9,7 @@ from tensorflow.keras import backend as K
 
 
 #%% Create and apply the attention model
-def attention_block(in_layer, attention_model, ratio=8, residual = False, apply_to_input=True): 
+def attention_block(in_layer, ratio=8, residual = False, apply_to_input=True): 
     in_sh = in_layer.shape # dimensions of the input tensor
     in_len = len(in_sh) 
     expanded_axis = 2 # defualt = 2
