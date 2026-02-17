@@ -28,7 +28,7 @@ def draw_learning_curves(history, results_path):
     plt.ylabel('Accuracy')
     plt.xlabel('Epoch')
     plt.legend(['Train', 'val'], loc='upper left')
-    #plt.show()
+    plt.show()
     plt.savefig(results_path + "/validation_accuracy.png")
     plt.plot(history.history['loss'])
     plt.plot(history.history['val_loss'])
@@ -36,7 +36,7 @@ def draw_learning_curves(history, results_path):
     plt.ylabel('Loss')
     plt.xlabel('Epoch')
     plt.legend(['Train', 'val'], loc='upper left')
-    #plt.show()
+    plt.show()
     plt.savefig(results_path + "/validation_loss.png")
     plt.close()
 
