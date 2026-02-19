@@ -30,10 +30,14 @@ def load_data_Gym(data_path, subject, dataset, sensor="imu"):
     data_session = pd.read_csv(data_path)
     print(data_session["Subject"].unique())
     data_session = data_session.set_index("Subject")
-    
-    label_map = {
+    if dataset == 'GymCap':
+     label_map = {
             "Adductor": 1, "ArmCurl": 2, "BenchPress": 3, "LegCurl": 4, "LegPress": 5, "Null": 6, 
             "Riding": 7, "RopeSkipping": 8, "Running": 9, "Squat": 10, "StairClimber": 11, "Walking": 12
+        }
+    if dataset == 'Golden':
+        label_map = {
+            "bench_press": 1, "arm_curl": 2,
         }
     data_session['Workout'] = data_session['Workout'].map(label_map)
     print(f"Fold (Test Subject) = {subject}")

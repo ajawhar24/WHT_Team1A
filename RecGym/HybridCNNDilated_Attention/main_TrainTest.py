@@ -3,6 +3,8 @@
 import os
 import time
 import numpy as np
+import matplotlib
+#matplotlib.use('TkAgg')
 import matplotlib.pyplot as plt
 import tensorflow as tf
 #import torchinfo
@@ -19,7 +21,7 @@ from preprocess import get_data
 #from keras.utils.vis_utils import plot_model
 from sklearn.metrics import f1_score
 from sklearn.metrics import confusion_matrix
-
+print(matplotlib.get_backend())
 #%%
 def draw_learning_curves(history, results_path):
     plt.plot(history.history['accuracy'])
@@ -86,7 +88,7 @@ def plot_confusion_matrix(y_true, y_pred, sub, results_path, classes, normalize=
                     color="white" if cm[i, j] > thresh else "black",
                     fontsize=7)
     fig.tight_layout()
-    #plt.savefig(confusion_img, dpi=500)
+    plt.savefig(confusion_img, dpi=500)
     plt.savefig( results_path + "/cm_subject_" + str(sub) + '.png')
     plt.close(fig)
     return ax
@@ -403,7 +405,7 @@ def run():
     train_conf = { 'batch_size': 256, 'epochs': 1000, 'lr': 0.0001, 'LearnCurves': True, 'n_train': 3}
            
     # Train the model
-    #train(dataset_conf, train_conf, results_path)
+    train(dataset_conf, train_conf, results_path)
 
     # Evaluate the model based on the weights saved in the '/results' folder
     model = getModel(dataset_conf)
