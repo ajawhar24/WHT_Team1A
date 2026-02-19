@@ -1,0 +1,12 @@
+Subject: 1   Train no. 1   Time: 3.3 m   Test_acc: 0.8541   Test_kappa: 0.7052
+Subject: 1   Train no. 2   Time: 3.3 m   Test_acc: 0.8818   Test_kappa: 0.7633
+Subject: 1   Train no. 3   Time: 3.3 m   Test_acc: 0.8277   Test_kappa: 0.6558
+----------
+Subject: 1   best_run: 2   Time: 9.9 m   acc: 0.8818   avg_acc: 0.8545 +- 0.0221   kappa: 0.7633   avg_kappa: 0.7081 +- 0.0440
+----------
+
+Time: 0.2 h   
+
+Subject: 1   acc: 0.8818   kappa: 0.7633   
+Average of 1 subjects:
+Accuracy = 0.8818   Kappa = 0.7633

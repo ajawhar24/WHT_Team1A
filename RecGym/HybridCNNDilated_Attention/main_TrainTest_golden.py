@@ -310,7 +310,7 @@ def run():
     n_classes = 2  # Fixed to 2 for bench_press and arm_curl
     
     classes_labels = ['bench_press', 'arm_curl']
-    data_path = "../golden_dataset.csv" 
+    data_path = "/home/stephen/WHT_Team1A/golden_dataset.csv" 
 
     results_path = os.getcwd() + "/results_golden"
     print(f"Results will be saved to: {results_path}")

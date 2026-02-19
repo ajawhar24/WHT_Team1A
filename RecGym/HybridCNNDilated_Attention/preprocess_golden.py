@@ -84,25 +84,23 @@ def load_data_Gym_SingleSubject(data_path, dataset, sensor="imu", test_size=0.2)
 
 
 def get_data(path, dataset, sensor="imu"):
-    # Note: 'subject' argument is removed as it's no longer needed
     
     # Load and split the single subject data
     X_train, y_train, X_test, y_test = load_data_Gym_SingleSubject(path, dataset, sensor)
 
-    # Prepare training data (Reshape for CNN input: N, 1, Channels, Time)
-    # Note: Your original code used (N, 1, Ch, T). 
-    # Standard Keras usually prefers (N, T, Ch) or (N, T, Ch, 1), 
-    # but I will keep your specific format:
+    # --- CORRECTED RESHAPING BELOW ---
     
+    # Get dimensions: X_train is currently (Windows, 80, 6)
     N_tr, T, N_ch = X_train.shape 
-    # Transpose to match your original (N, 1, Ch, T) format if that's what your model expects
-    # Original: X_train was (Windows, 80, 6) -> Reshape to (Windows, 1, 6, 80)
-    X_train = X_train.transpose(0, 2, 1).reshape(N_tr, 1, N_ch, T)
+    
+    # We want (Windows, 1, 80, 6)
+    # We do NOT transpose. We simply add the '1' dimension.
+    X_train = X_train.reshape(N_tr, 1, T, N_ch)
     y_train_onehot = to_categorical(y_train)
 
-    # Prepare testing data 
+    # Same for Test data
     N_te, T, N_ch = X_test.shape 
-    X_test = X_test.transpose(0, 2, 1).reshape(N_te, 1, N_ch, T)
+    X_test = X_test.reshape(N_te, 1, T, N_ch)
     y_test_onehot = to_categorical(y_test)
 
     return X_train, y_train, y_train_onehot, X_test, y_test, y_test_onehot
