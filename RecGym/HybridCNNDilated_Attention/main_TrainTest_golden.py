@@ -11,6 +11,7 @@ from tensorflow.keras.losses import categorical_crossentropy
 from tensorflow.keras.callbacks import ModelCheckpoint, LearningRateScheduler
 from sklearn.metrics import accuracy_score, cohen_kappa_score, confusion_matrix, f1_score
 from sklearn.utils import class_weight
+from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay, classification_report
 
 import models 
 # Ensure this imports the NEW get_data function we wrote in the previous step
@@ -244,11 +245,11 @@ def test(model, dataset_conf, results_path):
         
         # Load the BEST model for this subject found in training
         # We strip the newline char from the path
-        relative_path = best_model_paths[sub].strip() 
-        filepath = results_path + relative_path
-        print(f"Loading best model for evaluation: {filepath}")
+        # relative_path = best_model_paths[sub].strip() 
+        # filepath = results_path + relative_path
+        # print(f"Loading best model for evaluation: {filepath}")
         
-        model.load_weights(filepath)
+        model.load_weights('results_golden/saved models/run-3/subject-1.weights.h5')
         
         y_pred = model.predict(X_test).argmax(axis=-1)
         labels = y_test_onehot.argmax(axis=-1)
@@ -275,6 +276,7 @@ def test(model, dataset_conf, results_path):
     draw_performance_barChart(n_sub, acc_bestRun, 'Accuracy')
     draw_performance_barChart(n_sub, kappa_bestRun, 'K-score')
     plot_confusion_matrix(labels_all, predic_all, "All", results_path, classes_labels)
+    print(classification_report(labels_all, predic_all, target_names = ['bench_press', 'arm_curl']))
     log_write.close() 
 
 #%% Model Definition Wrapper
@@ -332,7 +334,7 @@ def run():
     train_conf = { 'batch_size': 32, 'epochs': 100, 'lr': 0.0001, 'LearnCurves': True, 'n_train': 3}
            
     # Train
-    train(dataset_conf, train_conf, results_path)
+    #train(dataset_conf, train_conf, results_path)
 
     # Test
     model = getModel(dataset_conf)
