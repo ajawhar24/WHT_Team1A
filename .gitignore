@@ -1,3 +1,12 @@
 RecGym/data/RecGym.csvData/RecGym.csv
 Data/RecGym.csv
 Original Data/RecGym.csv
+
+MyData/**
+/MyData/
+Original Data/ugh.py
+Original Data/gymdataugh.py
+Original Data/nowwwcombine.py
+Original Data/ugh2.py
+
+shuffle_golden.py
