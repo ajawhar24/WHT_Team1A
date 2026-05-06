@@ -1,0 +1,2 @@
+version,device name,recording epoch time,recording time,recording timezone,platform,appVersion,device id,sensors,sampleRateMs,standardisation
+4,Watch7.8,1773062938151,2026-03-09_13-28-58,America/New_York,watchos,1.54,4E57E49B-B251-444D-8F8C-48F389FF7DAF,WatchAccelerometerUncalibrated|WristMotion,0|0,false

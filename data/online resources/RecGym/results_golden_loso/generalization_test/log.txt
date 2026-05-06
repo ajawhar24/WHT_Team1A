@@ -1,0 +1,9 @@
+Subject: 22   acc: 0.4632   kappa: 0.2269
+Subject: 23   acc: 0.4112   kappa: -0.0993
+Subject: 24   acc: 0.3802   kappa: -0.1752
+Subject: 25   acc: 0.4417   kappa: -0.1792
+Subject: 26   acc: 0.3483   kappa: 0.1378
+
+Ensemble results on new dataset (5 subjects):
+Accuracy = 0.4089 ± 0.0413
+Kappa    = -0.0178 ± 0.1682

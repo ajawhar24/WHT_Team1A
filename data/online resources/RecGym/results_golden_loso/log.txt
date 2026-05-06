@@ -1,0 +1,174 @@
+
+LOSO fold 1/21  –  Test subject: 1
+  Subject: 1   Run: 1   Time: 1.4 m   Test acc: 1.0000   Test kappa: 1.0000
+
+  Subject 1 summary   best_run: 1   Time: 1.4 m
+  best_acc: 1.0000   avg_acc: 1.0000 ± 0.0000
+  best_kappa: 1.0000   avg_kappa: 1.0000 ± 0.0000
+
+LOSO fold 2/21  –  Test subject: 2
+  Subject: 2   Run: 1   Time: 1.3 m   Test acc: 1.0000   Test kappa: 1.0000
+
+  Subject 2 summary   best_run: 1   Time: 1.3 m
+  best_acc: 1.0000   avg_acc: 1.0000 ± 0.0000
+  best_kappa: 1.0000   avg_kappa: 1.0000 ± 0.0000
+
+LOSO fold 3/21  –  Test subject: 3
+  Subject: 3   Run: 1   Time: 1.3 m   Test acc: 1.0000   Test kappa: 1.0000
+
+  Subject 3 summary   best_run: 1   Time: 1.4 m
+  best_acc: 1.0000   avg_acc: 1.0000 ± 0.0000
+  best_kappa: 1.0000   avg_kappa: 1.0000 ± 0.0000
+
+LOSO fold 4/21  –  Test subject: 4
+  Subject: 4   Run: 1   Time: 1.3 m   Test acc: 1.0000   Test kappa: 1.0000
+
+  Subject 4 summary   best_run: 1   Time: 1.3 m
+  best_acc: 1.0000   avg_acc: 1.0000 ± 0.0000
+  best_kappa: 1.0000   avg_kappa: 1.0000 ± 0.0000
+
+LOSO fold 5/21  –  Test subject: 5
+  Subject: 5   Run: 1   Time: 1.3 m   Test acc: 1.0000   Test kappa: 1.0000
+
+  Subject 5 summary   best_run: 1   Time: 1.3 m
+  best_acc: 1.0000   avg_acc: 1.0000 ± 0.0000
+  best_kappa: 1.0000   avg_kappa: 1.0000 ± 0.0000
+
+LOSO fold 6/21  –  Test subject: 6
+  Subject: 6   Run: 1   Time: 1.3 m   Test acc: 1.0000   Test kappa: 1.0000
+
+  Subject 6 summary   best_run: 1   Time: 1.3 m
+  best_acc: 1.0000   avg_acc: 1.0000 ± 0.0000
+  best_kappa: 1.0000   avg_kappa: 1.0000 ± 0.0000
+
+LOSO fold 7/21  –  Test subject: 7
+  Subject: 7   Run: 1   Time: 1.3 m   Test acc: 0.9180   Test kappa: 0.8343
+
+  Subject 7 summary   best_run: 1   Time: 1.3 m
+  best_acc: 0.9180   avg_acc: 0.9180 ± 0.0000
+  best_kappa: 0.8343   avg_kappa: 0.8343 ± 0.0000
+
+LOSO fold 8/21  –  Test subject: 8
+  Subject: 8   Run: 1   Time: 1.3 m   Test acc: 1.0000   Test kappa: 1.0000
+
+  Subject 8 summary   best_run: 1   Time: 1.3 m
+  best_acc: 1.0000   avg_acc: 1.0000 ± 0.0000
+  best_kappa: 1.0000   avg_kappa: 1.0000 ± 0.0000
+
+LOSO fold 9/21  –  Test subject: 9
+  Subject: 9   Run: 1   Time: 1.3 m   Test acc: 1.0000   Test kappa: 1.0000
+
+  Subject 9 summary   best_run: 1   Time: 1.3 m
+  best_acc: 1.0000   avg_acc: 1.0000 ± 0.0000
+  best_kappa: 1.0000   avg_kappa: 1.0000 ± 0.0000
+
+LOSO fold 10/21  –  Test subject: 10
+  Subject: 10   Run: 1   Time: 1.3 m   Test acc: 1.0000   Test kappa: 1.0000
+
+  Subject 10 summary   best_run: 1   Time: 1.3 m
+  best_acc: 1.0000   avg_acc: 1.0000 ± 0.0000
+  best_kappa: 1.0000   avg_kappa: 1.0000 ± 0.0000
+
+LOSO fold 11/21  –  Test subject: 11
+  Subject: 11   Run: 1   Time: 1.3 m   Test acc: 0.8378   Test kappa: 0.0000
+
+  Subject 11 summary   best_run: 1   Time: 1.3 m
+  best_acc: 0.8378   avg_acc: 0.8378 ± 0.0000
+  best_kappa: 0.0000   avg_kappa: 0.0000 ± 0.0000
+
+LOSO fold 12/21  –  Test subject: 12
+  Subject: 12   Run: 1   Time: 1.2 m   Test acc: 0.9839   Test kappa: 0.9677
+
+  Subject 12 summary   best_run: 1   Time: 1.2 m
+  best_acc: 0.9839   avg_acc: 0.9839 ± 0.0000
+  best_kappa: 0.9677   avg_kappa: 0.9677 ± 0.0000
+
+LOSO fold 13/21  –  Test subject: 13
+  Subject: 13   Run: 1   Time: 1.2 m   Test acc: 0.9682   Test kappa: 0.9363
+
+  Subject 13 summary   best_run: 1   Time: 1.2 m
+  best_acc: 0.9682   avg_acc: 0.9682 ± 0.0000
+  best_kappa: 0.9363   avg_kappa: 0.9363 ± 0.0000
+
+LOSO fold 14/21  –  Test subject: 14
+  Subject: 14   Run: 1   Time: 1.2 m   Test acc: 0.9753   Test kappa: 0.9484
+
+  Subject 14 summary   best_run: 1   Time: 1.2 m
+  best_acc: 0.9753   avg_acc: 0.9753 ± 0.0000
+  best_kappa: 0.9484   avg_kappa: 0.9484 ± 0.0000
+
+LOSO fold 15/21  –  Test subject: 15
+  Subject: 15   Run: 1   Time: 1.2 m   Test acc: 0.9767   Test kappa: 0.9535
+
+  Subject 15 summary   best_run: 1   Time: 1.2 m
+  best_acc: 0.9767   avg_acc: 0.9767 ± 0.0000
+  best_kappa: 0.9535   avg_kappa: 0.9535 ± 0.0000
+
+LOSO fold 16/21  –  Test subject: 16
+  Subject: 16   Run: 1   Time: 1.2 m   Test acc: 0.9631   Test kappa: 0.9261
+
+  Subject 16 summary   best_run: 1   Time: 1.3 m
+  best_acc: 0.9631   avg_acc: 0.9631 ± 0.0000
+  best_kappa: 0.9261   avg_kappa: 0.9261 ± 0.0000
+
+LOSO fold 17/21  –  Test subject: 17
+  Subject: 17   Run: 1   Time: 1.3 m   Test acc: 0.9660   Test kappa: 0.9309
+
+  Subject 17 summary   best_run: 1   Time: 1.3 m
+  best_acc: 0.9660   avg_acc: 0.9660 ± 0.0000
+  best_kappa: 0.9309   avg_kappa: 0.9309 ± 0.0000
+
+LOSO fold 18/21  –  Test subject: 18
+  Subject: 18   Run: 1   Time: 1.2 m   Test acc: 0.9864   Test kappa: 0.9726
+
+  Subject 18 summary   best_run: 1   Time: 1.3 m
+  best_acc: 0.9864   avg_acc: 0.9864 ± 0.0000
+  best_kappa: 0.9726   avg_kappa: 0.9726 ± 0.0000
+
+LOSO fold 19/21  –  Test subject: 19
+  Subject: 19   Run: 1   Time: 1.2 m   Test acc: 0.9892   Test kappa: 0.9785
+
+  Subject 19 summary   best_run: 1   Time: 1.2 m
+  best_acc: 0.9892   avg_acc: 0.9892 ± 0.0000
+  best_kappa: 0.9785   avg_kappa: 0.9785 ± 0.0000
+
+LOSO fold 20/21  –  Test subject: 20
+  Subject: 20   Run: 1   Time: 1.2 m   Test acc: 1.0000   Test kappa: 1.0000
+
+  Subject 20 summary   best_run: 1   Time: 1.2 m
+  best_acc: 1.0000   avg_acc: 1.0000 ± 0.0000
+  best_kappa: 1.0000   avg_kappa: 1.0000 ± 0.0000
+
+LOSO fold 21/21  –  Test subject: 21
+  Subject: 21   Run: 1   Time: 1.2 m   Test acc: 0.9944   Test kappa: 0.9887
+
+  Subject 21 summary   best_run: 1   Time: 1.3 m
+  best_acc: 0.9944   avg_acc: 0.9944 ± 0.0000
+  best_kappa: 0.9887   avg_kappa: 0.9887 ± 0.0000
+
+Total training time: 0.5 h
+
+Subject: 1   acc: 1.0000   kappa: 1.0000
+Subject: 2   acc: 1.0000   kappa: 1.0000
+Subject: 3   acc: 1.0000   kappa: 1.0000
+Subject: 4   acc: 1.0000   kappa: 1.0000
+Subject: 5   acc: 1.0000   kappa: 1.0000
+Subject: 6   acc: 1.0000   kappa: 1.0000
+Subject: 7   acc: 0.9180   kappa: 0.8343
+Subject: 8   acc: 1.0000   kappa: 1.0000
+Subject: 9   acc: 1.0000   kappa: 1.0000
+Subject: 10   acc: 1.0000   kappa: 1.0000
+Subject: 11   acc: 0.8378   kappa: 0.0000
+Subject: 12   acc: 0.9839   kappa: 0.9677
+Subject: 13   acc: 0.9682   kappa: 0.9363
+Subject: 14   acc: 0.9753   kappa: 0.9484
+Subject: 15   acc: 0.9767   kappa: 0.9535
+Subject: 16   acc: 0.9631   kappa: 0.9261
+Subject: 17   acc: 0.9660   kappa: 0.9309
+Subject: 18   acc: 0.9864   kappa: 0.9726
+Subject: 19   acc: 0.9892   kappa: 0.9785
+Subject: 20   acc: 1.0000   kappa: 1.0000
+Subject: 21   acc: 0.9944   kappa: 0.9887
+LOSO results across 21 subjects:
+Accuracy = 0.9790 ± 0.0372
+Kappa    = 0.9256 ± 0.2107

@@ -1,0 +1,61 @@
+import pandas as pd
+from scipy import signal
+import numpy as np
+
+
+columns_to_keep = ['wristMotion_accelerationX','wristMotion_accelerationY','wristMotion_accelerationZ','wristMotion_rotationRateX','wristMotion_rotationRateY','wristMotion_rotationRateZ']
+
+files = [
+    "C:\\Users\\scruf\\Desktop\\WHT\\261224_AIDBC_W7_5_S1_R12-2024-12-26_16-19-51.csv"
+]
+
+excercise_participant = [
+    ('1','1','11','1','1')
+]
+
+all = []
+for i,f in enumerate(files):
+    df = pd.read_csv(f)
+    first_valid = df[columns_to_keep].notna().all(axis=1).cummax()
+    df = df.loc[first_valid, columns_to_keep].iloc[50:-50].reset_index(drop=True)
+
+    decimated = {}
+    for col in df.columns[:6]:
+        vals = df[col].values.astype(np.float64)
+        mean = np.mean(vals)
+        vals_centered = vals - mean                        
+        resampled = signal.resample_poly(vals_centered, 1, 5, padtype='line')
+        decimated[col] = resampled + mean
+
+    df_downsampled = pd.DataFrame(decimated)
+    df_downsampled = df_downsampled.iloc[5:-5]
+
+    parent = []
+    child = []
+    participant = []
+    setNum = []
+    id = []
+    for j in range(len(df_downsampled)):
+        if j < 362 or j > 1853:
+            parent.append('0')
+            child.append('0')
+        else:
+            parent.append(excercise_participant[i][0])
+            child.append(excercise_participant[i][1])
+        participant.append(excercise_participant[i][2])
+        setNum.append(excercise_participant[i][3])
+        id.append(excercise_participant[i][4])
+    df_downsampled['parent'] = parent
+    df_downsampled['child'] = child
+    df_downsampled['participant'] = participant
+    df_downsampled['set'] = setNum
+    df_downsampled['ID'] = id
+
+    all.append(df_downsampled)
+
+full = pd.concat(all, ignore_index=True)
+
+
+full.columns = ['x_accel','y_accel','z_accel','x_gyro','y_gyro','z_gyro','parent', 'child','participant', 'set', 'ID']
+
+full.to_csv('GymExc_v4.csv', index=False)

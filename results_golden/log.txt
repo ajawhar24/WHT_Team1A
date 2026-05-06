@@ -1,4 +1,0 @@
-
-Subject: 1   acc: 0.8277   kappa: 0.6558   
-Average of 1 subjects:
-Accuracy = 0.8277   Kappa = 0.6558
